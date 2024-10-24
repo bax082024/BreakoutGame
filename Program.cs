@@ -64,7 +64,17 @@ class BreakoutGame
 
   static void MoveBall(int windowWidth, int windowHeight)
   {
-    
+    ballPositionX += ballDirectionX;
+    ballPositionY += ballDirectionY;
+
+    if (ballPositionX <= 0 || ballPositionX >= windowWidth -1)
+    {
+      ballDirectionX *= -1;
+    }
+    if (ballPositionY <= 0 || ballPositionY >= windowHeight - 1)
+    {
+      ballDirectionY *= - 1;
+    }
   }
 
   static void HandleInput()
