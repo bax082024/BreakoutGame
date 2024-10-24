@@ -16,6 +16,10 @@ class BreakoutGame
     static int ballDirectionX = 1;
     static int ballDirectionY = 1;
 
+    // input Tracking
+    static bool moveLeft = false;
+    static bool moveRight = false;
+
     static void Main(string[] args)
     {
         // Setup Console Window size
@@ -41,7 +45,16 @@ class BreakoutGame
             MoveBall(windowWidth, windowHeight);
             HandleInput();
 
-            Thread.Sleep(100);
+            if (moveLeft && paddlePositionX > 0)
+            {
+                paddlePositionX -= 2;
+            }
+            if (moveRight && paddlePositionX < windowWidth - paddleWidth)
+            {
+                paddlePositionX += 2;
+            }
+
+            Thread.Sleep(20);
         }
     }
 
