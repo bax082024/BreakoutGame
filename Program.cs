@@ -26,6 +26,23 @@ class BreakoutGame
       Thread.Sleep(100);
     }
 
-    
+    static void DrawPaddle()
+    {
+      Console.SetCursorPosition(windowWidth / 2 - 5, windowHeight - 5);
+      Console.Write("========")
+    }
+
+    static void HandleInput()
+    {
+      if (Console.KeyAvailable)
+      {
+        var key = Console.ReadKey(true).Key;
+
+        if (key == ConsoleKey.Escape)
+        {
+          gameRunning = false;
+        }
+      }
+    }
   }
 }
