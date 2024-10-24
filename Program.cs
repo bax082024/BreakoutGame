@@ -19,6 +19,23 @@ class BreakoutGame
     static int ballSpeed = 5; 
     static int ballSpeedCounter = 0; 
 
+    // Block variables
+    static int blockRows = 3;
+    static int blockCols = 10;
+    static bool[,] blocks;
+
+    static void InitializeBlocks()
+    {
+        blocks = new bool[blockRows, blockCols];
+        for (int i = 0; i < blockRows; i++)
+        {
+            for (int j = 0; j < blockCols; j++)
+            {
+                blocks[i, j] = true;
+            }
+        }
+    }
+    
     static void Main(string[] args)
     {
         // Console Window size
