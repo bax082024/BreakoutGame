@@ -39,7 +39,6 @@ class BreakoutGame
             DrawBall();
 
             MoveBall(windowWidth, windowHeight);
-
             HandleInput();
 
             Thread.Sleep(100);
@@ -78,6 +77,20 @@ class BreakoutGame
         if (ballPositionY <= 0 || ballPositionY >= windowHeight - 1)
         {
             ballDirectionY *= -1; // Reverse direction when hitting top/bottom walls
+        }
+
+        // Ball and Paddle Collision
+        if (ballPositionY == paddlePositionY - 1 && ballPositionX >= paddlePositionX && ballPositionX <= paddlePositionX + paddleWidth)
+        {
+            ballDirectionY *= -1;
+        }
+
+        if (ballPositionY >= windowHeight)
+        {
+            gameRunning = false;
+            Console.Clear();
+            Console.SetCursorPosition(windowWidth / 2 - 5, windowHeight / 2);
+            Console.WriteLine("Game Over!");
         }
     }
 

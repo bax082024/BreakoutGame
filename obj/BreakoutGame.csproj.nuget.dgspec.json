@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\BreakoutGame\\BreakoutGame.csproj": {}
+    "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\breakoutgame\\BreakoutGame.csproj": {}
   },
   "projects": {
-    "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\BreakoutGame\\BreakoutGame.csproj": {
+    "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\breakoutgame\\BreakoutGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\BreakoutGame\\BreakoutGame.csproj",
+        "projectUniqueName": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\breakoutgame\\BreakoutGame.csproj",
         "projectName": "BreakoutGame",
-        "projectPath": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\BreakoutGame\\BreakoutGame.csproj",
+        "projectPath": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\breakoutgame\\BreakoutGame.csproj",
         "packagesPath": "C:\\Users\\busch\\.nuget\\packages\\",
-        "outputPath": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\BreakoutGame\\obj\\",
+        "outputPath": "C:\\HjemmeKode\\C-Sharp\\C-Sharp\\BreakoutGame\\breakoutgame\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\busch\\AppData\\Roaming\\NuGet\\NuGet.Config"
