@@ -118,14 +118,14 @@ class BreakoutGame
                 gameRunning = false; // Exit game
             }
 
-            // Paddle movement
-            if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
+            // move left or right
+            if (key == ConsoleKey.LeftArrow)
             {
-                paddlePositionX -= 2; // Move left
+                moveLeft = true;
             }
-            if (key == ConsoleKey.RightArrow && paddlePositionX < Console.WindowWidth - paddleWidth)
+            if (key == ConsoleKey.RightArrow)
             {
-                paddlePositionX += 2; // Move right
+                moveRight = true;
             }
         }
     }
