@@ -9,24 +9,24 @@ class BreakoutGame
     static int paddleWidth = 10;
     static int paddlePositionX = 0;
     static int paddlePositionY = 0;
-    static int paddleSpeed = 2; // Paddle speed control
+    static int paddleSpeed = 2;
 
     // Ball variables
     static int ballPositionX;
     static int ballPositionY;
     static int ballDirectionX = 1;
     static int ballDirectionY = 1;
-    static int ballSpeed = 5; // Ball speed control
-    static int ballSpeedCounter = 0; // Counter to track when to move the ball
+    static int ballSpeed = 5; 
+    static int ballSpeedCounter = 0; 
 
     static void Main(string[] args)
     {
-        // Setup Console Window size
+        // Console Window size
         int windowWidth = Console.WindowWidth;
         int windowHeight = Console.WindowHeight;
         Console.Clear();
 
-        // Initialize paddle and ball positions
+        // paddle and ball positions
         paddlePositionX = windowWidth / 2 - paddleWidth / 2;
         paddlePositionY = (int)(windowHeight * 0.8);
 
@@ -41,12 +41,12 @@ class BreakoutGame
             DrawPaddle(windowWidth, windowHeight);
             DrawBall();
 
-            // Handle ball speed independently
+            // ball speed 
             ballSpeedCounter++;
             if (ballSpeedCounter >= ballSpeed)
             {
                 MoveBall(windowWidth, windowHeight);
-                ballSpeedCounter = 0; // Reset the counter after moving the ball
+                ballSpeedCounter = 0; 
             }
 
             HandleInput(windowWidth);
@@ -58,7 +58,7 @@ class BreakoutGame
 
     static void DrawPaddle(int windowWidth, int windowHeight)
     {
-        // Ensure the paddle stays within the console buffer size
+        // paddle within the console buffer size
         paddlePositionX = Math.Max(0, Math.Min(paddlePositionX, Console.BufferWidth - paddleWidth));
         paddlePositionY = Math.Max(0, Math.Min(paddlePositionY, Console.BufferHeight - 1));
 
@@ -71,7 +71,7 @@ class BreakoutGame
     {
         // Draw the ball at the current position
         Console.SetCursorPosition(ballPositionX, ballPositionY);
-        Console.Write("O"); // Ball represented as 'O'
+        Console.Write("O"); 
     }
 
     static void MoveBall(int windowWidth, int windowHeight)
@@ -83,17 +83,17 @@ class BreakoutGame
         // Ball bouncing logic
         if (ballPositionX <= 0 || ballPositionX >= windowWidth - 1)
         {
-            ballDirectionX *= -1; // Reverse direction when hitting left/right walls
+            ballDirectionX *= -1; 
         }
         if (ballPositionY <= 0)
         {
-            ballDirectionY *= -1; // Reverse direction when hitting the top wall
+            ballDirectionY *= -1; 
         }
 
-        // Ball and paddle collision detection
+        // Ball and paddle collision 
         if (ballPositionY == paddlePositionY - 1 && ballPositionX >= paddlePositionX && ballPositionX <= paddlePositionX + paddleWidth)
         {
-            ballDirectionY *= -1; // Bounce back up when hitting the paddle
+            ballDirectionY *= -1; 
         }
 
         // Game over if ball goes below the paddle
@@ -108,24 +108,24 @@ class BreakoutGame
 
     static void HandleInput(int windowWidth)
     {
-        // Handle input directly, continuously moving the paddle while the arrow keys are pressed
+        // Handle input 
         if (Console.KeyAvailable)
         {
             var key = Console.ReadKey(true).Key;
 
             if (key == ConsoleKey.Escape)
             {
-                gameRunning = false; // Exit game
+                gameRunning = false; 
             }
 
             // Paddle movement
             if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
             {
-                paddlePositionX -= paddleSpeed; // Move left
+                paddlePositionX -= paddleSpeed; 
             }
             if (key == ConsoleKey.RightArrow && paddlePositionX < windowWidth - paddleWidth)
             {
-                paddlePositionX += paddleSpeed; // Move right
+                paddlePositionX += paddleSpeed; 
             }
         }
     }
