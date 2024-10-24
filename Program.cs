@@ -5,6 +5,10 @@ class BreakoutGame
 {
     static bool gameRunning = true;
 
+    static int paddleWidth = 10;
+    static int paddlePositionX;
+    static int paddlePositionY;
+
     static void Main(string[] args)
     {
         // Setup Console Window size
