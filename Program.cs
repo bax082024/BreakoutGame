@@ -32,16 +32,16 @@ class BreakoutGame
         // Game loop
         while (gameRunning)
         {
-            // Clear the console window for the next frame
+           
             Console.Clear();
 
-            // Render the game 
             DrawPaddle(windowWidth, windowHeight);
+            DrawBall();
 
-            // Handle Input
+            MoveBall(windowWidth, windowHeight);
+            
             HandleInput();
-
-            // Delay to slow down the game loop
+           
             Thread.Sleep(100);
         }
     }
