@@ -10,14 +10,22 @@ class BreakoutGame
 
   static void Main(string[] args)
   {
+    // Console window size
     Console.SetWindowSize(windowWidth / 8, windowHeight / 20);
     Console.Clear();
 
+    // Game loop
     while (gameRunning)
     {
       Console.Clear();
 
       DrawPaddle();
+
+      HandleInput();
+
+      Thread.Sleep(100);
     }
+
+    
   }
 }
