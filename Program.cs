@@ -5,9 +5,16 @@ class BreakoutGame
 {
     static bool gameRunning = true;
 
+    // Paddle variables
     static int paddleWidth = 10;
     static int paddlePositionX;
     static int paddlePositionY;
+
+    // Ball variables
+    static int ballPositionX;
+    static int ballPositionY;
+    static int ballDirectionX = 1;
+    static int ballDirectionY = 1;
 
     static void Main(string[] args)
     {
