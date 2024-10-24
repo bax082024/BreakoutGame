@@ -161,7 +161,12 @@ class BreakoutGame
           int blockStartY = i + 2;
           int blockEndY = blockStartY + blockHeight;
 
-          
+          if (ballPositionX >= blockStartX && ballPositionX <= blockEndX && ballPositionY >= blockStartY && ballPositionY <= blockEndY)
+          {
+            blocks[i, j] = false;
+            ballDirectionY *= -1;
+            return;
+          }
         }
       }
     }
