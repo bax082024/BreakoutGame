@@ -3,100 +3,104 @@ using System.Threading;
 
 class BreakoutGame
 {
-  static bool gameRunning = true;
+    static bool gameRunning = true;
 
-  // Paddle variables
-  static int paddleWidth = 10;
-  static int paddlePositionX;
-  static int paddlePositionY;
+    // Paddle variables
+    static int paddleWidth = 10;
+    static int paddlePositionX = 0;
+    static int paddlePositionY = 0;
 
-  // Ball variables
-  static int ballPositionX;
-  static int ballPositionY;
-  static int ballDirectionX = 1;
-  static int ballDirectionY = 1;
+    // Ball variables
+    static int ballPositionX;
+    static int ballPositionY;
+    static int ballDirectionX = 1;
+    static int ballDirectionY = 1;
 
-  static void Main(string[] args)
-  {
-    // Setup Console Window size
-    int windowWidth = Console.WindowWidth;
-    int windowHeight = Console.WindowHeight;
-    Console.Clear();
-
-    paddlePositionX = windowWidth / 2 - paddleWidth / 2;
-    paddlePositionY = (int)(windowHeight * 0.8);
-
-    ballPositionX = windowWidth / 2;
-    ballDirectionY = windowHeight / 2;
-
-    // Game loop
-    while (gameRunning)
+    static void Main(string[] args)
     {
-        
-      Console.Clear();
+        // Setup Console Window size
+        int windowWidth = Console.WindowWidth;
+        int windowHeight = Console.WindowHeight;
+        Console.Clear();
 
-      DrawPaddle(windowWidth, windowHeight);
-      DrawBall();
+        // Initialize paddle and ball positions
+        paddlePositionX = windowWidth / 2 - paddleWidth / 2;
+        paddlePositionY = (int)(windowHeight * 0.8);
 
-      MoveBall(windowWidth, windowHeight);
-      
-      HandleInput();
-      
-      Thread.Sleep(100);
+        ballPositionX = windowWidth / 2;
+        ballPositionY = windowHeight / 2;
+
+        // Game loop
+        while (gameRunning)
+        {
+            Console.Clear();
+
+            DrawPaddle(windowWidth, windowHeight);
+            DrawBall();
+
+            MoveBall(windowWidth, windowHeight);
+
+            HandleInput();
+
+            Thread.Sleep(100);
+        }
     }
-  }
 
-  static void DrawPaddle(int windowWidth, int windowHeight)
-  {
-      
-    int paddlePositionX = Math.Max(0, Math.Min(paddlePositionX, Console.BufferWidth - paddleWidth));
-    int paddlePositionY = Math.Max(0, Math.Min(paddlePositionY, Console.BufferHeight - 1));
-
-    Console.SetCursorPosition(paddlePositionX, paddlePositionY); 
-    Console.Write(new string("=", paddleWidth));
-  }
-
-  static void DrawBall()
-  {
-    Console.SetCursorPosition(ballPositionX, ballPositionY);
-    Console.Write("O");
-  }
-
-  static void MoveBall(int windowWidth, int windowHeight)
-  {
-    ballPositionX += ballDirectionX;
-    ballPositionY += ballDirectionY;
-
-    if (ballPositionX <= 0 || ballPositionX >= windowWidth -1)
+    static void DrawPaddle(int windowWidth, int windowHeight)
     {
-      ballDirectionX *= -1;
+        // Ensure the paddle stays within the console buffer size
+        paddlePositionX = Math.Max(0, Math.Min(paddlePositionX, Console.BufferWidth - paddleWidth));
+        paddlePositionY = Math.Max(0, Math.Min(paddlePositionY, Console.BufferHeight - 1));
+
+        // Draw the paddle at the current position
+        Console.SetCursorPosition(paddlePositionX, paddlePositionY);
+        Console.Write(new string('=', paddleWidth)); // Draw paddle
     }
-    if (ballPositionY <= 0 || ballPositionY >= windowHeight - 1)
+
+    static void DrawBall()
     {
-      ballDirectionY *= - 1;
+        // Draw the ball at the current position
+        Console.SetCursorPosition(ballPositionX, ballPositionY);
+        Console.Write("O"); // Ball represented as 'O'
     }
-  }
 
-  static void HandleInput()
-  {
-    if (Console.KeyAvailable)
+    static void MoveBall(int windowWidth, int windowHeight)
     {
-      var key = Console.ReadKey(true).Key;
+        // Move the ball by updating its position
+        ballPositionX += ballDirectionX;
+        ballPositionY += ballDirectionY;
 
-      if (key == ConsoleKey.Escape)
-      {
-          gameRunning = false; // Exit game
-      }
-
-      if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
-      {
-        paddlePositionX -= 2;
-      }
-      if (key == ConsoleKey.RightArrow && paddlePositionX < Console.WindowWidth - paddleWidth)
-      {
-        paddlePositionX += 2;
-      }
-        
+        // Ball bouncing logic
+        if (ballPositionX <= 0 || ballPositionX >= windowWidth - 1)
+        {
+            ballDirectionX *= -1; // Reverse direction when hitting left/right walls
+        }
+        if (ballPositionY <= 0 || ballPositionY >= windowHeight - 1)
+        {
+            ballDirectionY *= -1; // Reverse direction when hitting top/bottom walls
+        }
     }
-  }
+
+    static void HandleInput()
+    {
+        if (Console.KeyAvailable)
+        {
+            var key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.Escape)
+            {
+                gameRunning = false; // Exit game
+            }
+
+            // Paddle movement
+            if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
+            {
+                paddlePositionX -= 2; // Move left
+            }
+            if (key == ConsoleKey.RightArrow && paddlePositionX < Console.WindowWidth - paddleWidth)
+            {
+                paddlePositionX += 2; // Move right
+            }
+        }
+    }
 }
