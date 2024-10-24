@@ -48,12 +48,12 @@ class BreakoutGame
 
     static void DrawPaddle(int windowWidth, int windowHeight)
     {
-        // Ensure the paddle is within the console buffer size
-        int paddlePositionX = Math.Max(0, Math.Min(windowWidth / 2 - 5, Console.BufferWidth - 10));
-        int paddlePositionY = Math.Max(0, Math.Min(windowHeight - 2, Console.BufferHeight - 1));
+        
+        int paddlePositionX = Math.Max(0, Math.Min(paddlePositionX, Console.BufferWidth - paddleWidth));
+        int paddlePositionY = Math.Max(0, Math.Min(paddlePositionY, Console.BufferHeight - 1));
 
-        Console.SetCursorPosition(paddlePositionX, paddlePositionY); // Position near the bottom
-        Console.Write("========"); // Paddle size
+        Console.SetCursorPosition(paddlePositionX, paddlePositionY); 
+        Console.Write(new string("=", paddleWidth));
     }
 
     static void HandleInput()
