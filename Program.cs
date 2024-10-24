@@ -18,7 +18,7 @@ class BreakoutGame
             // Clear the console window for the next frame
             Console.Clear();
 
-            // Render the game (this will include the paddle, ball, and blocks later)
+            // Render the game 
             DrawPaddle(windowWidth, windowHeight);
 
             // Handle Input
@@ -49,7 +49,7 @@ class BreakoutGame
             {
                 gameRunning = false; // Exit game
             }
-            // Later we will handle moving the paddle here
+            
         }
     }
 }
