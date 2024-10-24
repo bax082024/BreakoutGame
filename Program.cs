@@ -87,6 +87,15 @@ class BreakoutGame
       {
           gameRunning = false; // Exit game
       }
+
+      if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
+      {
+        paddlePositionX -= 2;
+      }
+      if (key == ConsoleKey.RightArrow && paddlePositionX < Console.WindowWidth - paddleWidth)
+      {
+        paddlePositionX += 2;
+      }
         
     }
   }
