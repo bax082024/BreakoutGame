@@ -23,6 +23,12 @@ class BreakoutGame
         int windowHeight = Console.WindowHeight;
         Console.Clear();
 
+        paddlePositionX = windowWidth / 2 - paddleWidth / 2;
+        paddlePositionY = (int)(windowHeight * 0.8);
+
+        ballPositionX = windowWidth / 2;
+        ballDirectionY = windowHeight / 2;
+
         // Game loop
         while (gameRunning)
         {
