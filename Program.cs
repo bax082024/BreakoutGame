@@ -9,16 +9,15 @@ class BreakoutGame
     static int paddleWidth = 10;
     static int paddlePositionX = 0;
     static int paddlePositionY = 0;
+    static int paddleSpeed = 2; // Paddle speed control
 
     // Ball variables
     static int ballPositionX;
     static int ballPositionY;
     static int ballDirectionX = 1;
     static int ballDirectionY = 1;
-
-    // input Tracking
-    static bool moveLeft = false;
-    static bool moveRight = false;
+    static int ballSpeed = 5; // Ball speed control
+    static int ballSpeedCounter = 0; // Counter to track when to move the ball
 
     static void Main(string[] args)
     {
@@ -42,18 +41,17 @@ class BreakoutGame
             DrawPaddle(windowWidth, windowHeight);
             DrawBall();
 
-            MoveBall(windowWidth, windowHeight);
-            HandleInput();
-
-            if (moveLeft && paddlePositionX > 0)
+            // Handle ball speed independently
+            ballSpeedCounter++;
+            if (ballSpeedCounter >= ballSpeed)
             {
-                paddlePositionX -= 2;
-            }
-            if (moveRight && paddlePositionX < windowWidth - paddleWidth)
-            {
-                paddlePositionX += 2;
+                MoveBall(windowWidth, windowHeight);
+                ballSpeedCounter = 0; // Reset the counter after moving the ball
             }
 
+            HandleInput(windowWidth);
+
+            // Delay to slow down the game loop
             Thread.Sleep(20);
         }
     }
@@ -87,17 +85,18 @@ class BreakoutGame
         {
             ballDirectionX *= -1; // Reverse direction when hitting left/right walls
         }
-        if (ballPositionY <= 0 || ballPositionY >= windowHeight - 1)
+        if (ballPositionY <= 0)
         {
-            ballDirectionY *= -1; // Reverse direction when hitting top/bottom walls
+            ballDirectionY *= -1; // Reverse direction when hitting the top wall
         }
 
-        // Ball and Paddle Collision
+        // Ball and paddle collision detection
         if (ballPositionY == paddlePositionY - 1 && ballPositionX >= paddlePositionX && ballPositionX <= paddlePositionX + paddleWidth)
         {
-            ballDirectionY *= -1;
+            ballDirectionY *= -1; // Bounce back up when hitting the paddle
         }
 
+        // Game over if ball goes below the paddle
         if (ballPositionY >= windowHeight)
         {
             gameRunning = false;
@@ -107,8 +106,9 @@ class BreakoutGame
         }
     }
 
-    static void HandleInput()
+    static void HandleInput(int windowWidth)
     {
+        // Handle input directly, continuously moving the paddle while the arrow keys are pressed
         if (Console.KeyAvailable)
         {
             var key = Console.ReadKey(true).Key;
@@ -118,23 +118,14 @@ class BreakoutGame
                 gameRunning = false; // Exit game
             }
 
-            // move left or right
-            if (key == ConsoleKey.LeftArrow)
+            // Paddle movement
+            if (key == ConsoleKey.LeftArrow && paddlePositionX > 0)
             {
-                moveLeft = true;
+                paddlePositionX -= paddleSpeed; // Move left
             }
-            if (key == ConsoleKey.RightArrow)
+            if (key == ConsoleKey.RightArrow && paddlePositionX < windowWidth - paddleWidth)
             {
-                moveRight = true;
-            }
-
-            if (key == ConsoleKey.LeftArrow && moveLeft)
-            {
-                moveLeft = false;
-            }
-            if (key == ConsoleKey.RightArrow && moveRight)
-            {
-                moveRight = false;
+                paddlePositionX += paddleSpeed; // Move right
             }
         }
     }
