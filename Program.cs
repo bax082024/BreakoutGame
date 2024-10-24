@@ -127,6 +127,15 @@ class BreakoutGame
             {
                 moveRight = true;
             }
+
+            if (key == ConsoleKey.LeftArrow && moveLeft)
+            {
+                moveLeft = false;
+            }
+            if (key == ConsoleKey.RightArrow && moveRight)
+            {
+                moveRight = false;
+            }
         }
     }
 }
