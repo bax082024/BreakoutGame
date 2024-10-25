@@ -22,6 +22,8 @@ class BreakoutGame
   // Block variables
   static int blockRows = 3;
   static int blockCols = 10;
+  static int blockWidth = 5:
+  static int blackHeight = 2:
   static bool[,] blocks;
 
   static void InitializeBlocks()
@@ -84,8 +86,14 @@ class BreakoutGame
       {
         if (blocks[i, j])
         {
-          Console.SetCursorPosition(j * 7, i + 2);
-          Console.Write("#####");
+          int blockX = j * (blockWidth + 2 );
+          int blockY = i * (blockHeight + 1) + 2;
+
+          for (int h = 0; h < blockHeight; h++)
+          {
+            Console.SetCursorPosition(blockX, blockY + h);
+            Console.Write(new string('#', blockWidht));
+          }
         }
       }
     }
@@ -151,7 +159,7 @@ class BreakoutGame
 
     for (int i = 0; i < blockRows; i++)
     {
-      for (int j = 0; j = < blockCols; j++)
+      for (int j = 0; j < blockCols; j++)
       {
         if (blocks[i, j])
         {
