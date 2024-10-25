@@ -85,7 +85,8 @@ class BreakoutGame
       for (int j = 0; j < blockCols; j++)
       {
         if (blocks[i, j])
-        {
+        { 
+          // Starting position blocks
           int blockX = j * (blockWidth + 2 );
           int blockY = i * (blockHeight + 1) + 2;
 
@@ -104,6 +105,8 @@ class BreakoutGame
     // paddle within the console buffer size
     paddlePositionX = Math.Max(0, Math.Min(paddlePositionX, Console.BufferWidth - paddleWidth));
     paddlePositionY = Math.Max(0, Math.Min(paddlePositionY, Console.BufferHeight - 1));
+    Console.SetCursorPosition(paddlePositionX, paddlePositionY);
+    Console.Write(new string('=', paddleWidth));
 
     // Draw the paddle at the current position
     Console.SetCursorPosition(paddlePositionX, paddlePositionY);
