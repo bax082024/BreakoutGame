@@ -210,7 +210,11 @@ class BreakoutGame
     Console.WriteLine($"Score: {score}");
   }
 
-  
+  static void DrawLives()
+  {
+    Console.SetCursorPosition(0, 1);
+    Console.Write($"Lives: {lives}");
+  }
 
   static void HandleInput(int windowWidth)
   {
