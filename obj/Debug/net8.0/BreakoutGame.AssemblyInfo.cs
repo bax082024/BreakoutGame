@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BreakoutGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f852ea1e74652599c26874ba25466cebd4b392d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f4440408a1e18b85962f595313fa26769f2ed073")]
 [assembly: System.Reflection.AssemblyProductAttribute("BreakoutGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BreakoutGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
