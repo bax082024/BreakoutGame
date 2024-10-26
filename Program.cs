@@ -158,31 +158,38 @@ class BreakoutGame
   }
 
   static void CheckBlockCollision()
-{
-  for (int i = 0; i < blockRows; i++)
   {
-    for (int j = 0; j < blockCols; j++)
+    for (int i = 0; i < blockRows; i++)
     {
-      if (blocks[i, j])
+      for (int j = 0; j < blockCols; j++)
       {
-        // block boundaries
-        int blockXStart = j * (blockWidth + 2); 
-        int blockXEnd = blockXStart + blockWidth;
-        int blockYStart = i * (blockHeight + 1) + 2; 
-        int blockYEnd = blockYStart + blockHeight;
-
-        
-        if (ballPositionX >= blockXStart && ballPositionX < blockXEnd && ballPositionY >= blockYStart && ballPositionY < blockYEnd)
+        if (blocks[i, j])
         {
-            // remove block when hit and change direction
-            blocks[i, j] = false;
-            ballDirectionY *= -1;
-            return; 
+          // block boundaries
+          int blockXStart = j * (blockWidth + 2); 
+          int blockXEnd = blockXStart + blockWidth;
+          int blockYStart = i * (blockHeight + 1) + 2; 
+          int blockYEnd = blockYStart + blockHeight;
+
+          
+          if (ballPositionX >= blockXStart && ballPositionX < blockXEnd && ballPositionY >= blockYStart && ballPositionY < blockYEnd)
+          {
+              // remove block when hit and change direction
+              blocks[i, j] = false;
+              ballDirectionY *= -1;
+              score += 10;
+              return; 
+          }
         }
       }
     }
   }
-}
+
+  static void DrawScore()
+  {
+    Console.SetCursorPosition(0, 0);
+    Console.WriteLine($"Score: {score}");
+  }
 
   
 
