@@ -20,10 +20,10 @@ class BreakoutGame
   static int ballSpeedCounter = 0; 
 
   // Block variables
-  static int blockRows = 3;
-  static int blockCols = 10;
-  static int blockWidth = 5:
-  static int blackHeight = 2:
+  static int blockRows = 5;
+  static int blockCols = 15;
+  static int blockWidth = 5;
+  static int blockHeight = 2;
   static bool[,] blocks;
 
   static void InitializeBlocks()
@@ -93,7 +93,7 @@ class BreakoutGame
           for (int h = 0; h < blockHeight; h++)
           {
             Console.SetCursorPosition(blockX, blockY + h);
-            Console.Write(new string('#', blockWidht));
+            Console.Write(new string('#', blockWidth));
           }
         }
       }
@@ -155,34 +155,33 @@ class BreakoutGame
   }
 
   static void CheckBlockCollision()
+{
+  for (int i = 0; i < blockRows; i++)
   {
-    //Check for collisions
-    int blockHeight = 2;
-    int blockWidth = 2;
-
-    for (int i = 0; i < blockRows; i++)
+    for (int j = 0; j < blockCols; j++)
     {
-      for (int j = 0; j < blockCols; j++)
+      if (blocks[i, j])
       {
-        if (blocks[i, j])
-        {
-          // block boundaries
-          int blockStartX = j * blockWidth;
-          int blockEndX = blockStartX + blockWidth;
-          int blockStartY = i + 2;
-          int blockEndY = blockStartY + blockHeight;
+        // block boundaries
+        int blockXStart = j * (blockWidth + 2); 
+        int blockXEnd = blockXStart + blockWidth;
+        int blockYStart = i * (blockHeight + 1) + 2; 
+        int blockYEnd = blockYStart + blockHeight;
 
-          if (ballPositionX >= blockStartX && ballPositionX <= blockEndX && ballPositionY >= blockStartY && ballPositionY <= blockEndY)
-          {
+        
+        if (ballPositionX >= blockXStart && ballPositionX < blockXEnd && ballPositionY >= blockYStart && ballPositionY < blockYEnd)
+        {
+            // remove block when hit and change direction
             blocks[i, j] = false;
             ballDirectionY *= -1;
-            return;
-          }
+            return; 
         }
       }
     }
-
   }
+}
+
+  
 
   static void HandleInput(int windowWidth)
   {
