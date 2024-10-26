@@ -29,6 +29,10 @@ class BreakoutGame
   // Score
   static int score = 0;
 
+  // Lives
+  static int lives = 3;
+
+  // build blocks
   static void InitializeBlocks()
   {
     blocks = new bool[blockRows, blockCols];
@@ -62,6 +66,7 @@ class BreakoutGame
     {
       Console.Clear();
 
+      DrawLives();
       DrawScore();
       DrawBlocks();
       DrawPaddle(windowWidth, windowHeight);
@@ -151,10 +156,23 @@ class BreakoutGame
     // Game over if ball goes below the paddle
     if (ballPositionY >= windowHeight)
     {
+      lives--;
+      if (lives > 0)
+      {
+        ballPositionX = windowWidth / 2;
+        ballPositionY = windowHeight / 2;
+        ballDirectionY = -1;
+      }
+      else
+      { 
       gameRunning = false;
       Console.Clear();
       Console.SetCursorPosition(windowWidth / 2 - 5, windowHeight / 2);
-      Console.WriteLine($"Game Over! Total Score: {score}");
+      Console.WriteLine($"Game Over!");
+      Console.SetCursorPosition(windowWidth / 2 - 5, windowHeight / 2 + 1);
+      Console.WriteLine($"Final Score: {score}");
+
+      }
     }
   }
 
