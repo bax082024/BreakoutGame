@@ -26,6 +26,9 @@ class BreakoutGame
   static int blockHeight = 2;
   static bool[,] blocks;
 
+  // Score
+  static int score = 0;
+
   static void InitializeBlocks()
   {
     blocks = new bool[blockRows, blockCols];
