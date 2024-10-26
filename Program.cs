@@ -62,6 +62,7 @@ class BreakoutGame
     {
       Console.Clear();
 
+      DrawScore();
       DrawBlocks();
       DrawPaddle(windowWidth, windowHeight);
       DrawBall();
@@ -153,7 +154,7 @@ class BreakoutGame
       gameRunning = false;
       Console.Clear();
       Console.SetCursorPosition(windowWidth / 2 - 5, windowHeight / 2);
-      Console.WriteLine("Game Over!");
+      Console.WriteLine($"Game Over! Total Score: {score}");
     }
   }
 
